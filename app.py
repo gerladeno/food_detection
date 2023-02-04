@@ -162,7 +162,7 @@ def predict():
     try:
         pred_img = image.load_img(filename, target_size=(200, 200))
     except FileNotFoundError:
-        return "Internal server error"
+        return dict()
 
     pred_img = image.img_to_array(pred_img)
     pred_img = np.expand_dims(pred_img, axis=0)
@@ -176,14 +176,14 @@ def predict():
 
     top = pred.argsort()[0][-3:]
     label.sort()
-    best_guest = urllib.parse.urlencode(label[top[2]].__str__())
+    best_guest = label[top[2]]
     x = dict()
     x[best_guest] = float("{:.2f}".format(pred[0][top[2]] * 100))
     x[label[top[1]]] = float("{:.2f}".format(pred[0][top[1]] * 100))
     x[label[top[0]]] = float("{:.2f}".format(pred[0][top[0]] * 100))
     pa['result'] = x
     pa['nutrition'] = nutrition_table[best_guest]
-    pa['food'] = f'{nu_link}{best_guest}'
+    pa['food'] = f'{nu_link}{urllib.parse.quote(best_guest)}'
     pa['quantity'] = 100
 
     return jsonify(pa)

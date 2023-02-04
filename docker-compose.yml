@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  image_detection:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: image_detection
+    environment:
+      - PORT=3002
+      - HOST=0.0.0.0
+    volumes:
+      - ../images:/app/images
+    networks:
+      - bot-network
+    restart: on-failure
+    ports:
+      - "3001:3002"
+volumes:
+  postgres:
+networks:
+  bot-network:

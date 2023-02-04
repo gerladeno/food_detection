@@ -9,7 +9,6 @@ templates
 test_images
 best_model_101class.hdf5
 cupcakes.jpg
-docker-compose.yml
 food-101.tar.gz
 Food_Image_Recognition.ipynb
 frenchfries.jpg
