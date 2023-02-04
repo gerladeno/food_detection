@@ -8,6 +8,7 @@ templates
 test_images
 cupcakes.jpg
 docker-compose.yml
+Dockerfile
 food-101.tar.gz
 Food_Image_Recognition.ipynb
 frenchfries.jpg
